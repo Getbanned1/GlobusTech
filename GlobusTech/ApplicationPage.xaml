@@ -1,0 +1,43 @@
+﻿<Page x:Class="GlobusTech.ApplicationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GlobusTech"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ApplicationPage">
+
+    <DockPanel Margin="10">
+
+        <StackPanel DockPanel.Dock="Top"
+                    Orientation="Horizontal"
+                    Margin="0 0 0 10">
+
+            <TextBox x:Name="SearchBox"
+                     Width="220"
+                     Margin="0 0 10 0"
+                     ToolTip="Поиск по ФИО" TextChanged="SearchBox_TextChanged" />
+            <Label Content="Сортировать по статусу"></Label>
+            <ComboBox x:Name="StatusSortBox" Width="100" SelectionChanged="StatusSortBox_SelectionChanged"></ComboBox>
+            <Button Content="Добавить" Width="100" Click="AddApplication_Click"/>
+            <Button Content="Удалить" Width="100" Margin="5 0 0 0" Click="DeleteApplication_ClickAsync"/>
+            <Button Content="Сохранить" Width="100" Margin="5 0 0 0" Click="SaveChanges_Click"/>
+        </StackPanel>
+
+        <DataGrid x:Name="ApplicationGrid"
+                  AutoGenerateColumns="False"
+                  SelectionMode="Single" CellEditEnding="ApplicationGrid_CellEditEnding">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True" Width="50"/>
+                <DataGridComboBoxColumn Header="ФИО" x:Name="FullNameColumn" Width="*"/>
+                <DataGridComboBoxColumn Header="Название сервиса" x:Name="ServiceColumn" Width="120"/>
+                <DataGridTextColumn Header="Количество человек" Binding="{Binding SpecialistAmount}" Width="*"/>
+                <DataGridTextColumn Header="Дата подачи" Binding="{Binding Date}" Width="160"/>
+                <DataGridComboBoxColumn  Header="Статус" x:Name="StatusColumn" Width="160"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </DockPanel>
+</Page>

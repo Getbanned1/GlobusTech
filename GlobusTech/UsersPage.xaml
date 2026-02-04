@@ -1,0 +1,43 @@
+﻿<Page x:Class="GlobusTech.UsersPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GlobusTech"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="UsersPage">
+
+    <DockPanel Margin="10">
+
+        <StackPanel DockPanel.Dock="Top"
+                    Orientation="Horizontal"
+                    Margin="0 0 0 10">
+
+            <TextBox x:Name="SearchBox"
+                     Width="220"
+                     Margin="0 0 10 0"
+                     ToolTip="Поиск по ФИО" TextChanged="SearchBox_TextChanged" />
+
+            <Button Content="Добавить" Width="100" Click="AddUser_Click"/>
+            <Button Content="Удалить" Width="100" Margin="5 0 0 0" Click="DeleteUser_Click"/>
+            <Button Content="Сохранить" Width="100" Margin="5 0 0 0" Click="SaveChanges_Click"/>
+        </StackPanel>
+
+        <DataGrid x:Name="UsersGrid"
+                  AutoGenerateColumns="False"
+                  SelectionMode="Single">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True" Width="50"/>
+                <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="*"/>
+                <DataGridTextColumn Header="Логин" Binding="{Binding Email}" Width="120"/>
+                <DataGridTextColumn Header="Пароль" Binding="{Binding Password}" Width="160"/>
+                <DataGridComboBoxColumn  Header="Роль" x:Name="RoleColumn" Width="160"/>
+
+                <DataGridComboBoxColumn  Header="Компания" x:Name="CompanyColumn" Width="160"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </DockPanel>
+</Page>
