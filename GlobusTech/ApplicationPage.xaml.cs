@@ -30,16 +30,16 @@ namespace GlobusTech
             InitializeComponent();
             _applicationPages = new();
             _context = new();
-
+            var statuses = _context.ApplicationStatuses.Select(s => s.Name).ToList();
+            statuses.Insert(0, "Все");
+            StatusSortBox.ItemsSource = statuses;
             LoadApplications();
         }
         public void LoadApplications()
         {
             try
             {
-                var statuses = _context.ApplicationStatuses.Select(s => s.Name).ToList();
-                statuses.Insert(0, "Все");
-                StatusSortBox.ItemsSource = statuses;
+
 
                 _applicationPages.Clear();
                 var query = _context.Applications
@@ -153,7 +153,9 @@ namespace GlobusTech
                         throw new InvalidOperationException($"Услуга {service.Name} имеет отрицательное количество лицензий!");
                 }
                 await _context.SaveChangesAsync();
-                MessageBox.Show("Данные сохранены");
+                MessageBox.Show("Данные сохранены","Успешная операция",MessageBoxButton.OK , MessageBoxImage.Information);
+                _applicationPages.Clear();
+                LoadApplications();
             }
             catch (Exception ex)
             {
@@ -166,7 +168,6 @@ namespace GlobusTech
             foreach (var app in _applicationPages)
             {
                 app.TotalCost = (app.Service?.Price ?? 0) * app.SpecialistAmount;
-                _context.Applications.Update(app);
             }
 
         }
@@ -211,9 +212,6 @@ namespace GlobusTech
                         return;
                     }
                     app.Service.AvalibleSlots -= app.SpecialistAmount;
-                    // уменьшаем слоты только при подтверждении
-                    _context.Services.Update(app.Service);
-                    _context.Applications.Update(app);
                 }
             }
         }
