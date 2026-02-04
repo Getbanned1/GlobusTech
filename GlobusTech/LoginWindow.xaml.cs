@@ -26,7 +26,7 @@ namespace GlobusTech
             InitializeComponent();
    
         }
-        public User Auth()
+        public void Auth()
         {
             using (var context = new GlobusTechnologyContext())
             {
@@ -34,23 +34,34 @@ namespace GlobusTech
                 if (user == null)
                 {
                     MessageBox.Show("Неверный логин или пароль", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
                 }
-                return user;
+                currentUser = user;
             }
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            currentUser = Auth();
-            MainWindow window = new MainWindow(currentUser);
-            window.Show();
-            this.Close();
-
+            Auth();
+            if(currentUser != null)
+            {
+                MainWindow window = new MainWindow(currentUser);
+                window.Show();
+                this.Close();
+            }
         }
 
         private void GuestButton_Click(object sender, RoutedEventArgs e)
         {
-            currentUser = new User();
+            User user = new User()
+            {
+                Role = new Role()
+                {
+                    Id=0,
+                    Name = null,
+                }
+            };
+            currentUser = user;
             MainWindow window = new MainWindow(currentUser);
             window.Show();
             this.Close();

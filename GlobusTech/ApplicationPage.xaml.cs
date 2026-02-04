@@ -25,7 +25,7 @@ namespace GlobusTech
     {
         private ObservableCollection<ApplicationModel> _applicationPages;
         private GlobusTechnologyContext _context;
-        public ApplicationPage()
+        public ApplicationPage(User currentUser)
         {
             InitializeComponent();
             _applicationPages = new();

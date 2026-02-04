@@ -23,18 +23,23 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         this.currentUser = currentUser;
-        NavigationPanel.Visibility = currentUser.Role.Name == null ? Visibility.Collapsed : Visibility.Visible;
-        MainFrame.Navigate(new ServicePage());
+        if (currentUser.Role.Name == null) 
+            NavigationPanel.Visibility = Visibility.Collapsed;
+        else
+        {
+            NavigationPanel.Visibility = currentUser.Role.Name == "Клиент" ? Visibility.Collapsed : Visibility.Visible;
+        }
+        MainFrame.Navigate(new ServicePage(currentUser));
     }
 
     private void ServicesNavButton_Click(object sender, RoutedEventArgs e)
     {
-        MainFrame.Navigate(new ServicePage());
+        MainFrame.Navigate(new ServicePage(currentUser));
     }
 
     private void ApplicationsNavButton_Click(object sender, RoutedEventArgs e)
     {
-        MainFrame.Navigate(new ApplicationPage());
+        MainFrame.Navigate(new ApplicationPage(currentUser));
 
     }
 

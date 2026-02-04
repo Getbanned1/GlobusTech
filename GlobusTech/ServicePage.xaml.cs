@@ -21,7 +21,7 @@ namespace GlobusTech
     /// </summary>
     public partial class ServicePage : Page
     {
-        public ServicePage()
+        public ServicePage(User currentUser)
         {
             InitializeComponent();
             DateSortBox.ItemsSource = new List<string>
@@ -31,6 +31,7 @@ namespace GlobusTech
                 "Старые"
             };
             LoadServices();
+            SearchBar.Visibility = currentUser.Role.Name == null ? Visibility.Collapsed : Visibility.Visible;
         }
         public void LoadServices()
         {
@@ -72,11 +73,6 @@ namespace GlobusTech
         private void DateSortBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             LoadServices();
-        }
-
-        private void ServiceCard_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

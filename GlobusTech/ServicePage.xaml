@@ -18,7 +18,7 @@
             <Label Content="Сортировать по дате"></Label>
             <ComboBox x:Name="DateSortBox" Width="100" SelectionChanged="DateSortBox_SelectionChanged"></ComboBox>
         </StackPanel>
-        <ListBox x:Name="ServiceCard" Grid.Row="1" BorderThickness="0" SelectionChanged="ServiceCard_SelectionChanged">
+        <ListBox x:Name="ServiceCard" Grid.Row="1" BorderThickness="0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border BorderThickness="1" CornerRadius="8" Margin="10">
@@ -41,19 +41,16 @@
                             <StackPanel Grid.Column="1" Margin="10">
                                 <TextBlock Text="{Binding Name}"></TextBlock>
                                 <TextBlock Text="{Binding ServiceSphere.Name}"></TextBlock>
-                                <TextBlock Text="{Binding Duration}"></TextBlock>
+                                <TextBlock Text="{Binding Duration, StringFormat='Продолжительность: {0}'}"></TextBlock>
                             </StackPanel>
                             <StackPanel Grid.Column="2" Margin="10" Orientation="Horizontal">
-                                <TextBlock Text="Стоимость "></TextBlock>
-                                <TextBlock Text="{Binding Price}"></TextBlock>
+                                <TextBlock Text="{Binding Price ,StringFormat='Стоимость: {0}'}"></TextBlock>
                             </StackPanel>
                             <StackPanel Grid.Column="0" Grid.Row="1" Margin="10" Orientation="Horizontal">
-                                <TextBlock Text="Дата начала "></TextBlock>
-                                <TextBlock Text="{Binding StartDate}"></TextBlock>
+                                <TextBlock Text="{Binding StartDate,StringFormat='Дата начала: {0}'}"></TextBlock>
                             </StackPanel>
                             <StackPanel Grid.Column="2" Grid.Row="1" Margin="10" Orientation="Horizontal">
-                                <TextBlock Text="Cлоты для заявки "></TextBlock>
-                                <TextBlock Text="{Binding AvalibleSlots}"></TextBlock>
+                                <TextBlock Text="{Binding AvalibleSlots ,StringFormat='Cлоты для заявки: {0}'}"></TextBlock>
                             </StackPanel>
                         </Grid>
                     </Border>
