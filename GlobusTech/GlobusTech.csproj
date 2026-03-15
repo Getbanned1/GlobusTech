@@ -36,10 +36,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GlobusTests\GlobusTests.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Images\aws_migration.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

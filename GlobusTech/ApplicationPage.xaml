@@ -13,11 +13,18 @@
         <StackPanel DockPanel.Dock="Top"
                     Orientation="Horizontal"
                     Margin="0 0 0 10">
-
-            <TextBox x:Name="SearchBox"
+            <Grid>
+                <TextBox x:Name="SearchBox"
                      Width="220"
                      Margin="0 0 10 0"
-                     ToolTip="Поиск по ФИО" TextChanged="SearchBox_TextChanged" />
+                     ToolTip="Поиск по ФИО" TextChanged="SearchBox_TextChanged"></TextBox>
+                <TextBlock x:Name="Hintfio"  Text="Введите ФИО"
+                   Foreground="Gray"
+                   Margin="5,0,0,0"
+                   VerticalAlignment="Center"
+                   IsHitTestVisible="False"/>
+            </Grid>
+
             <Label Content="Сортировать по статусу"></Label>
             <ComboBox x:Name="StatusSortBox" Width="100" SelectionChanged="StatusSortBox_SelectionChanged"></ComboBox>
             <Button Content="Добавить" Width="100" Click="AddApplication_Click"/>

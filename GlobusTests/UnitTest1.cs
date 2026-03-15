@@ -1,8 +1,8 @@
-using GlobusTech.Models;
+using GlobusTech;
 using GlobusTech.Services;
 using Xunit;
 
-namespace GlobusTech
+namespace GlobusTests
 {
     public class ServiceServiceTests
     {
@@ -10,9 +10,9 @@ namespace GlobusTech
         {
             return new List<Service>
             {
-                new Service { Name = "Web Development", StartDate = new DateOnly(2024, 3, 1) },
-                new Service { Name = "Mobile App", StartDate = new DateOnly(2023, 12, 10) },
-                new Service { Name = "IT Consulting", StartDate = new DateOnly(2024, 1, 15) }
+                new Service { Name = "Web Development", StartDate = new DateTime(2024, 3, 1) },
+                new Service { Name = "Mobile App", StartDate = new DateTime(2023, 12, 10) },
+                new Service { Name = "IT Consulting", StartDate = new DateTime(2024, 1, 15) }
             };
         }
 

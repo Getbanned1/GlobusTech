@@ -114,6 +114,7 @@ namespace GlobusTech
 
 
             };
+
             if (application.SpecialistAmount > application.Service.AvalibleSlots)
             {
                 MessageBox.Show($"Недостаточно свободных слотов для услуги \"{application.Service.Name}\".");
@@ -179,13 +180,22 @@ namespace GlobusTech
 
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            Hintfio.Visibility = string.IsNullOrEmpty(SearchBox.Text) ? Visibility.Visible : Visibility.Collapsed;
             LoadApplications();
         }
         private void ApplicationGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             if (e.Row.Item is not ApplicationModel app)
                 return;
+            if (e.Column.Header == "Количество человек")
+            {
 
+                if (app.SpecialistAmount - app.Service.AvalibleSlots < 0)
+                {
+                    MessageBox.Show($"Недостаточно свободных слотов для услуги \"{app.Service.Name}\".");
+                } 
+                
+            }
             // Смотрим, изменилась ли колонка "Статус"
             if (e.Column.Header.ToString() == "Статус")
             {

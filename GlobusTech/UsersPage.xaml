@@ -34,7 +34,6 @@
                 <DataGridTextColumn Header="Логин" Binding="{Binding Email}" Width="120"/>
                 <DataGridTextColumn Header="Пароль" Binding="{Binding Password}" Width="160"/>
                 <DataGridComboBoxColumn  Header="Роль" x:Name="RoleColumn" Width="160"/>
-
                 <DataGridComboBoxColumn  Header="Компания" x:Name="CompanyColumn" Width="160"/>
             </DataGrid.Columns>
         </DataGrid>
